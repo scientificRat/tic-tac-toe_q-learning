@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5716BFA51CF1FED700EE10A1 /* ConsoleDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5716BFA41CF1FED700EE10A1 /* ConsoleDisplay.cpp */; };
 		57D260231CEAF4B000EB15DD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57D260221CEAF4B000EB15DD /* main.cpp */; };
+		57D2602E1CEAF5BF00EB15DD /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57D2602D1CEAF5BF00EB15DD /* GameManager.cpp */; };
+		57D260311CEAF66900EB15DD /* DecisionUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57D260301CEAF66900EB15DD /* DecisionUnit.cpp */; };
+		57D260331CEAF67E00EB15DD /* QlearningMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57D260321CEAF67E00EB15DD /* QlearningMachine.cpp */; };
+		57D260371CEAF6E800EB15DD /* HumanPlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57D260361CEAF6E800EB15DD /* HumanPlayer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +28,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5716BFA01CF1903200EE10A1 /* Display.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
+		5716BFA41CF1FED700EE10A1 /* ConsoleDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleDisplay.cpp; sourceTree = "<group>"; };
+		5716BFA61CF1FEDF00EE10A1 /* ConsoleDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsoleDisplay.h; sourceTree = "<group>"; };
 		57D2601F1CEAF4B000EB15DD /* tic-tac-toe(Reinforcement Learning) */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "tic-tac-toe(Reinforcement Learning)"; sourceTree = BUILT_PRODUCTS_DIR; };
 		57D260221CEAF4B000EB15DD /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		57D2602C1CEAF5B300EB15DD /* GameManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		57D2602D1CEAF5BF00EB15DD /* GameManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameManager.cpp; sourceTree = "<group>"; };
+		57D2602F1CEAF65A00EB15DD /* DecisionUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecisionUnit.h; sourceTree = "<group>"; };
+		57D260301CEAF66900EB15DD /* DecisionUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DecisionUnit.cpp; sourceTree = "<group>"; };
+		57D260321CEAF67E00EB15DD /* QlearningMachine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = QlearningMachine.cpp; sourceTree = "<group>"; };
+		57D260341CEAF68600EB15DD /* QlearningMachine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QlearningMachine.h; sourceTree = "<group>"; };
+		57D260351CEAF6D600EB15DD /* HumanPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HumanPlayer.h; sourceTree = "<group>"; };
+		57D260361CEAF6E800EB15DD /* HumanPlayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HumanPlayer.cpp; sourceTree = "<group>"; };
+		57D2603A1CEAF9E200EB15DD /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		57D2603F1CEAFBE300EB15DD /* BaseDataStruct.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseDataStruct.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +56,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5716BFA31CF1FE9F00EE10A1 /* DisplaySystem */ = {
+			isa = PBXGroup;
+			children = (
+				5716BFA01CF1903200EE10A1 /* Display.h */,
+				5716BFA41CF1FED700EE10A1 /* ConsoleDisplay.cpp */,
+				5716BFA61CF1FEDF00EE10A1 /* ConsoleDisplay.h */,
+			);
+			name = DisplaySystem;
+			sourceTree = "<group>";
+		};
+		5716BFA81CF2135900EE10A1 /* Instructor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Instructor;
+			sourceTree = "<group>";
+		};
 		57D260161CEAF4B000EB15DD = {
 			isa = PBXGroup;
 			children = (
@@ -57,9 +92,53 @@
 		57D260211CEAF4B000EB15DD /* tic-tac-toe(Reinforcement Learning) */ = {
 			isa = PBXGroup;
 			children = (
+				5716BFA81CF2135900EE10A1 /* Instructor */,
+				5716BFA31CF1FE9F00EE10A1 /* DisplaySystem */,
 				57D260221CEAF4B000EB15DD /* main.cpp */,
+				57D2603E1CEAFB0200EB15DD /* BaseDataStruct */,
+				57D2602C1CEAF5B300EB15DD /* GameManager.h */,
+				57D2602D1CEAF5BF00EB15DD /* GameManager.cpp */,
+				57D2603D1CEAF9FC00EB15DD /* Player */,
 			);
 			path = "tic-tac-toe(Reinforcement Learning)";
+			sourceTree = "<group>";
+		};
+		57D260381CEAF70100EB15DD /* QlearningMachine */ = {
+			isa = PBXGroup;
+			children = (
+				57D2602F1CEAF65A00EB15DD /* DecisionUnit.h */,
+				57D260301CEAF66900EB15DD /* DecisionUnit.cpp */,
+				57D260321CEAF67E00EB15DD /* QlearningMachine.cpp */,
+				57D260341CEAF68600EB15DD /* QlearningMachine.h */,
+			);
+			name = QlearningMachine;
+			sourceTree = "<group>";
+		};
+		57D260391CEAF72100EB15DD /* HumanPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				57D260351CEAF6D600EB15DD /* HumanPlayer.h */,
+				57D260361CEAF6E800EB15DD /* HumanPlayer.cpp */,
+			);
+			name = HumanPlayer;
+			sourceTree = "<group>";
+		};
+		57D2603D1CEAF9FC00EB15DD /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				57D260381CEAF70100EB15DD /* QlearningMachine */,
+				57D260391CEAF72100EB15DD /* HumanPlayer */,
+				57D2603A1CEAF9E200EB15DD /* Player.h */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		57D2603E1CEAFB0200EB15DD /* BaseDataStruct */ = {
+			isa = PBXGroup;
+			children = (
+				57D2603F1CEAFBE300EB15DD /* BaseDataStruct.h */,
+			);
+			name = BaseDataStruct;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +197,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57D260371CEAF6E800EB15DD /* HumanPlayer.cpp in Sources */,
+				5716BFA51CF1FED700EE10A1 /* ConsoleDisplay.cpp in Sources */,
+				57D2602E1CEAF5BF00EB15DD /* GameManager.cpp in Sources */,
 				57D260231CEAF4B000EB15DD /* main.cpp in Sources */,
+				57D260331CEAF67E00EB15DD /* QlearningMachine.cpp in Sources */,
+				57D260311CEAF66900EB15DD /* DecisionUnit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +323,7 @@
 				57D260281CEAF4B000EB15DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
