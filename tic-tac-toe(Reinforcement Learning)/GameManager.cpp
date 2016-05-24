@@ -7,6 +7,7 @@
 //
 
 #include "GameManager.h"
+//#include <iostream>
 //single instance
 GameManager* GameManager::gamemanager=nullptr;
 
@@ -48,7 +49,6 @@ int GameManager::check(){
             }
         }
     }
-
     //check diagonal
     for(int m=winStateNumOfChess-width;m<=height-winStateNumOfChess;m++){
         state=0;
@@ -86,9 +86,7 @@ int GameManager::check(){
                 return result;
             }
         }
-        
     }
-    
     
     return 0;
 }
@@ -96,10 +94,9 @@ int GameManager::check(){
 
 int GameManager::checkHelp(int &state, int &countPlayer1, int &countPlayer2,int &i,int &j){
     
-    const int ON_BLANK=0;
-    const int ON_PLAYER1=1;
-    const int ON_PLAYER2=2;
-    
+    static const int ON_BLANK=0;
+    static const int ON_PLAYER1=1;
+    static const int ON_PLAYER2=2;
     if(cst::NO_CHESS==gameboard->getState(i, j)){
         switch (state) {
             case ON_PLAYER1:
@@ -121,7 +118,7 @@ int GameManager::checkHelp(int &state, int &countPlayer1, int &countPlayer2,int 
             case ON_PLAYER1:
                 ++countPlayer1;
                 if(countPlayer1 == winStateNumOfChess){
-                    return 1;
+                    return cst::PLAYER1_WIN;
                 }
                 break;
             case ON_PLAYER2:
@@ -145,7 +142,7 @@ int GameManager::checkHelp(int &state, int &countPlayer1, int &countPlayer2,int 
             case ON_PLAYER2:
                 ++countPlayer2;
                 if(countPlayer2 == winStateNumOfChess){
-                    return 2;
+                    return cst::PLAYER2_WIN;
                 }
                 break;
         }
@@ -154,65 +151,112 @@ int GameManager::checkHelp(int &state, int &countPlayer1, int &countPlayer2,int 
     return 0;
 }
 
-
-
 void GameManager::doGameOver(){
-    display->printGameOver(gameboard, gameState);
-    gameboard=nullptr;
-    gameOver=true;
+    double reward1;
+    double reward2;
+    if(cst::PLAYER1_WIN == gameState){
+        reward1=10;
+        reward2=-10;
+    }
+    else if(cst::PLAYER2_WIN ==gameState ){
+        reward1=-10;
+        reward2=10;
+    }
+    else{//if withdraw
+        reward1=-10;
+        reward2=-10;
+    }
+    FeedBack* f=new FeedBack(gameState,reward1,gameboard->getUniqueString());
+    player1->recieveFeedBack(f);
+    f->reward=reward2;
+    player2->recieveFeedBack(f);
+    delete f;
+    if(displayOn) display->printGameOver(gameboard, gameState);
 }
-
 
 void GameManager::runOneTurn(){
     int state=0;
     int action=0;
+    double reward=0;
     FeedBack *f=nullptr;
-
-    display->printBoard(gameboard);
+    //update display
+    if(displayOn){
+        display->printBoard(gameboard);
+        display->showSystemMessage(player1->getName()+ " take the turn\n>>>");
+    }
     
     while(true){
         action=player1->takeTurn(this->gameboard);
-        if(gameboard->tryApplyAction(action, 1)){
-            break;
-        }
-        display->showSystemMessage(player1->getName()+"wrong action!");
+        if(gameboard->tryApplyAction(action, 1)) break;
+        if(displayOn) display->showSystemMessage(player1->getName()+" wrong action!");
     }
-    
+    //check and sendFeedback
     state=check();
-    f=new FeedBack(state,state,action);
-    player2->recieveFeedBack(f);
-    delete f;
+//    std::cerr<<"["<<state<<"]"<<std::endl;
     step++;
-    if(state!=0 || step == gameboard->getLength()){
-        gameState=state;
+    if(state!=0 || step==gameboard->getLength()) gameState=state;
+    
+    if(gameState!=cst::GAME_NORMAL_RUN){
         doGameOver();
         return;
     }
+    else{
+        f=new FeedBack(gameState,reward,gameboard->getUniqueString());
+        player2->recieveFeedBack(f);
+        delete f;
+    }
     
-    display->printBoard(gameboard);
+    //update display
+    if(displayOn){
+        display->printBoard(gameboard);
+        display->showSystemMessage(player2->getName()+ " take the turn\n>>>");
+    }
+    
     while(true){
         action=player2->takeTurn(this->gameboard);
-        if(gameboard->tryApplyAction(action, 2)){
-            break;
-        }
-        display->showSystemMessage(player2->getName()+"wrong action!");
+        if(gameboard->tryApplyAction(action, 2)) break;
+        if(displayOn) display->showSystemMessage(player2->getName()+" wrong action!");
     }
+    //check and sendFeedback
     state=check();
-    f=new FeedBack(state,state,action);
-    player1->recieveFeedBack(f);
-    delete f;
+//    std::cerr<<"["<<state<<"]"<<std::endl;
     step++;
-    if(state!=0 || step == gameboard->getLength()){
-        gameState=state;
+    if(state!=0 || step==gameboard->getLength()) gameState=state;
+    
+    if(gameState!=cst::GAME_NORMAL_RUN){
         doGameOver();
         return;
     }
-    
-    display->printBoard(gameboard);
-    
+    else{
+        f=new FeedBack(gameState,reward,gameboard->getUniqueString());
+        player1->recieveFeedBack(f);
+        delete f;
+    }
 }
 
 void GameManager::restartGame(){
     gameboard->reset();
-    //imcompleted!
+    gameState=cst::GAME_NORMAL_RUN;
+    step=0;
 }
+
+void GameManager::runGame(int times){
+    displayOn=true;
+    while(times--){
+        while(!this->isGameOver()){
+            runOneTurn();
+        }
+        restartGame();
+    }
+}
+
+void GameManager::runGameWithoutDisplay(int times){
+    displayOn=false;
+    while (times--) {
+        while(!this->isGameOver()){
+            runOneTurn();
+        }
+        restartGame();
+    }
+}
+

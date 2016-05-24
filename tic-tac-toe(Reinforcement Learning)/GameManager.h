@@ -14,17 +14,17 @@
 class GameManager{
 private:
     //gameState is used when game is over which records who win
-    int gameState;
-    //
-    bool gameOver;
+    int gameState=cst::GAME_NORMAL_RUN;
     int step=0;
     int winStateNumOfChess;
+    
     
     GameBoard* gameboard;
     Player* player1;
     Player* player2;
+    //the display device
     Display *display;
-    
+    bool displayOn=false;
     //single Instance
     static GameManager* gamemanager;
     
@@ -36,9 +36,11 @@ private:
     winStateNumOfChess(_winStateNumOfChess),
     player1(_player1),player2(_palyer2)
     {
-        
+        player1->setRole(1);
+        player2->setRole(2);
     }
     
+    void runOneTurn();
     
     //check now state
     int check();
@@ -47,7 +49,19 @@ private:
     
     bool isFull();
     
+    bool isGameOver(){
+        if(cst::GAME_NORMAL_RUN==this->gameState){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    //call when game over
     void doGameOver();
+    
+    void restartGame();
     
 public:
     
@@ -75,15 +89,13 @@ public:
     void setPlayer(Player* _player1,Player* _palyer2){
         this->player1=_player1;
         this->player2=_palyer2;
+        player1->setRole(1);
+        player2->setRole(2);
     }
 
-    void runOneTurn();
-    
-    bool isGameOver(){
-        return gameOver;
-    }
-    
-    void restartGame();
+    void runGame(int times);
+    //call when you just want to train machine
+    void runGameWithoutDisplay(int times);
     
     
 };

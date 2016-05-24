@@ -19,7 +19,6 @@ int HumamPlayer::takeTurn(GameBoard *g){
         }
     }
     int choice;
-    std::cout<<name<<"please take the turn\n>>>";
     while (true) {
         std::cin>>choice;
         if(choice>=0 && choice<length){

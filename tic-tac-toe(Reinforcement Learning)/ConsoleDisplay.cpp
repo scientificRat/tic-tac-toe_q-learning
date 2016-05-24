@@ -7,6 +7,7 @@
 //
 
 #include "ConsoleDisplay.h"
+#include <unistd.h>
 void ConsoleDisplay::printBoard(GameBoard *g){
     int width=g->getWidth();
     int height=g->getHeight();
@@ -37,7 +38,7 @@ void ConsoleDisplay::printBoard(GameBoard *g){
         
         
     }
-    
+//    system("clear");
     cout << "Player 1 ("<<player1_ch<<")  -  Player 2 ("<<player2_ch<<")" << endl << endl;
     cout << endl;
     
@@ -60,14 +61,16 @@ void ConsoleDisplay::printBoard(GameBoard *g){
 }
 
 void ConsoleDisplay::printGameOver(GameBoard* g,int gameState){
-    if(gameState==0){
+    printBoard(g);
+    if(gameState==cst::WITHDRAW){
         std::cout<<"Withdraw\n";
     }
-    else if(gameState==1){
+    else if(gameState==cst::PLAYER1_WIN){
         std::cout<<"player1 win"<<std::endl;
     }
-    else if(gameState==2){
+    else if(gameState==cst::PLAYER2_WIN){
         std::cout<<"palyer2 win"<<std::endl;
     }
-    printBoard(g);
+    std::cout<<"--------------------------\n\n";
+    
 }

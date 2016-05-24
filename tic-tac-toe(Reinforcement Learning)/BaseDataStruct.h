@@ -9,11 +9,14 @@
 #ifndef BaseDataStruct_h
 #define BaseDataStruct_h
 #include <string>
-#include <sstream>
 namespace cst {
     const int NO_CHESS=0;
     const int PLAYER1_CHESS=1;
-    const int PLAYER2_CHESS=1;
+    const int PLAYER2_CHESS=2;
+    const int GAME_NORMAL_RUN=-1;
+    const int PLAYER1_WIN=1;
+    const int PLAYER2_WIN=2;
+    const int WITHDRAW=0;
 }
 
 struct GameBoard{
@@ -35,7 +38,6 @@ public:
         }
         
     }
-    
     GameBoard(GameBoard*g){
         this->width=g->getWidth();
         this->height=g->getHeight();
@@ -46,7 +48,7 @@ public:
         }
     }
     
-    
+    //unused
     bool operator < (const GameBoard&g) const{
         int len=width*height;
         for(int i=0;i<len;i++){
@@ -59,7 +61,6 @@ public:
         }
         return false;
     }
-    
     bool operator ==(const GameBoard& g) const{
         int len=width*height;
         for(int i=0;i<len;i++){
@@ -69,14 +70,11 @@ public:
         }
         return true;
     }
-    
     std::string getUniqueString(){
         std::string result;
-        std::stringstream ss;
         for(int i=0;i<length;i++){
-            ss<<vect[i];
+            result.push_back('0'+vect[i]);
         }
-        ss>>result;
         return result;
     }
     
@@ -126,13 +124,11 @@ public:
 struct FeedBack{
 public:
     int gameState;
-    int reward;
-    int oppoentStep;
-    FeedBack(int _gameState,int _reward,int _oppoentStep)
-    :gameState(_gameState),reward(_reward),oppoentStep(_oppoentStep){
-    }
+    double reward;
+    std::string gameBoardIdentifier;
+    FeedBack(int _gameState,double _reward,std::string _gameBoardIdentifier)
+    :gameState(_gameState),
+    reward(_reward),
+    gameBoardIdentifier(_gameBoardIdentifier){}
 };
-
-
-
 #endif /* BaseDataStruct_h */
