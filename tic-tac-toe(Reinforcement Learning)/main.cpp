@@ -14,7 +14,7 @@
 #include "ConsoleDisplay.h"
 
 namespace gameSettings {
-    double epsilon=1;
+    double epsilon=0;
     double alpaha=0.5;
     double discount=0.8;
 }
@@ -27,7 +27,7 @@ int main(int argc, const char * argv[]) {
     Player *p_machine2=new QlearningMachine("playerM",gameSettings::epsilon,gameSettings::alpaha,gameSettings::discount);
     ConsoleDisplay* display=new ConsoleDisplay('X','O');
     GameManager *m=GameManager::create(display,gameBoard, 3, p_machine1, p_machine2);
-    m->runGameWithoutDisplay(50000);
+    m->runGameWithoutDisplay(20000);
     m->setPlayer(p_machine1, p2);
     m->runGame(2);
     delete gameBoard;

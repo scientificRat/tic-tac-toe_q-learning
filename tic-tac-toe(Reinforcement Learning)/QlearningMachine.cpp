@@ -16,25 +16,35 @@ using namespace std;
 //---------------------------------------------------------------------
 int QlearningMachine::getPolicy(std::string& gameBoardIdentifier){
     int policy=-1;
-    int tempAction=0;
     double maxQvalue=-INFINITY;
     bool isFirst=true;
+    double qValue;
     //Traversal the board and find the max q-value's action among the valid actions
-    for(int i=0;i<gameBoardIdentifier.size();i++){
+    
+    for(int i=0;i<gameBoardIdentifier.length();i++){
         if('0'==gameBoardIdentifier[i]){
             std::string tempString=gameBoardIdentifier;
             tempString[i]=getRole()+'0';
             if(isFirst){
                 policy=i;
-                //if no maped value, we will get null (0)
-                maxQvalue=afterStateMap[tempString];
+                if(afterStateMap.count(tempString)){
+                    maxQvalue=afterStateMap[tempString];
+                }
+                else{
+                    maxQvalue=0;
+                }
                 isFirst=false;
             }
             else{
-                double qValue=afterStateMap[tempString];
+                if(afterStateMap.count(tempString)){
+                    qValue=afterStateMap[tempString];
+                }
+                else{
+                    qValue=0;
+                }
                 if(qValue>maxQvalue){
                     maxQvalue=qValue;
-                    policy=tempAction;
+                    policy=i;
                 }
             }
         }

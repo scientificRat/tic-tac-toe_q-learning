@@ -243,6 +243,7 @@ void GameManager::restartGame(){
 void GameManager::runGame(int times){
     displayOn=true;
     while(times--){
+        display->showGameStart(gameboard);
         while(!this->isGameOver()){
             runOneTurn();
         }

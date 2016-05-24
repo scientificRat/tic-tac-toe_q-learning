@@ -19,6 +19,8 @@
 
 class Display{
 public:
+    
+    virtual void showGameStart(GameBoard*g)    =0;
 
     virtual void printBoard(GameBoard*g)    =0;
     

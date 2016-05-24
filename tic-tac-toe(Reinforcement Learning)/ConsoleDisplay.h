@@ -21,11 +21,13 @@ public:
     :player1_ch(p1symbol),player2_ch(p2symbol){
     }
     
-    void printBoard(GameBoard*g);
+    void showGameStart(GameBoard*g) override;
     
-    void printGameOver(GameBoard* g,int gameState);
+    void printBoard(GameBoard*g) override;
     
-    void showSystemMessage(std::string msg){
+    void printGameOver(GameBoard* g,int gameState) override;
+    
+    void showSystemMessage(std::string msg) override{
         cout<<msg;
     }
     
