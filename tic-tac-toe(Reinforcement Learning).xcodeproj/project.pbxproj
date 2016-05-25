@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4CB28AFB1CF605EA001F01A7 /* MinimaxMachine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB28AF91CF605EA001F01A7 /* MinimaxMachine.cpp */; };
+		4CB28AFD1CF61253001F01A7 /* Chessboard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4CB28AFC1CF61253001F01A7 /* Chessboard.cpp */; };
 		5716BFA51CF1FED700EE10A1 /* ConsoleDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5716BFA41CF1FED700EE10A1 /* ConsoleDisplay.cpp */; };
 		57D260231CEAF4B000EB15DD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57D260221CEAF4B000EB15DD /* main.cpp */; };
 		57D2602E1CEAF5BF00EB15DD /* GameManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 57D2602D1CEAF5BF00EB15DD /* GameManager.cpp */; };
@@ -27,6 +29,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4CB28AF91CF605EA001F01A7 /* MinimaxMachine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MinimaxMachine.cpp; sourceTree = "<group>"; };
+		4CB28AFA1CF605EA001F01A7 /* MinimaxMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinimaxMachine.h; sourceTree = "<group>"; };
+		4CB28AFC1CF61253001F01A7 /* Chessboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chessboard.cpp; sourceTree = "<group>"; };
+		4CB28AFE1CF6126D001F01A7 /* Chessboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chessboard.h; sourceTree = "<group>"; };
 		5716BFA01CF1903200EE10A1 /* Display.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		5716BFA41CF1FED700EE10A1 /* ConsoleDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleDisplay.cpp; sourceTree = "<group>"; };
 		5716BFA61CF1FEDF00EE10A1 /* ConsoleDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsoleDisplay.h; sourceTree = "<group>"; };
@@ -53,6 +59,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CB28AF81CF605B5001F01A7 /* MinimaxMachine */ = {
+			isa = PBXGroup;
+			children = (
+				4CB28AF91CF605EA001F01A7 /* MinimaxMachine.cpp */,
+				4CB28AFA1CF605EA001F01A7 /* MinimaxMachine.h */,
+				4CB28AFC1CF61253001F01A7 /* Chessboard.cpp */,
+				4CB28AFE1CF6126D001F01A7 /* Chessboard.h */,
+			);
+			name = MinimaxMachine;
+			sourceTree = "<group>";
+		};
 		5716BFA31CF1FE9F00EE10A1 /* DisplaySystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +138,7 @@
 		57D2603D1CEAF9FC00EB15DD /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				4CB28AF81CF605B5001F01A7 /* MinimaxMachine */,
 				57D260381CEAF70100EB15DD /* QlearningMachine */,
 				57D260391CEAF72100EB15DD /* HumanPlayer */,
 				57D2603A1CEAF9E200EB15DD /* Player.h */,
@@ -192,7 +210,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB28AFD1CF61253001F01A7 /* Chessboard.cpp in Sources */,
 				57D260371CEAF6E800EB15DD /* HumanPlayer.cpp in Sources */,
+				4CB28AFB1CF605EA001F01A7 /* MinimaxMachine.cpp in Sources */,
 				5716BFA51CF1FED700EE10A1 /* ConsoleDisplay.cpp in Sources */,
 				57D2602E1CEAF5BF00EB15DD /* GameManager.cpp in Sources */,
 				57D260231CEAF4B000EB15DD /* main.cpp in Sources */,

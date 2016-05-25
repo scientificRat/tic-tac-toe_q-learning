@@ -26,7 +26,7 @@ public:
     void recieveFeedBack(FeedBack* f) override{
         
     }
-    std::string getName(){
+    std::string getName() override{
         return name;
     }
 

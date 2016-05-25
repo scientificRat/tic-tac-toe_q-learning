@@ -10,6 +10,7 @@
 #include "Player.h"
 #include "HumanPlayer.h"
 #include "QlearningMachine.h"
+#include "MinimaxMachine.h"
 #include "GameManager.h"
 #include "ConsoleDisplay.h"
 
@@ -25,13 +26,20 @@ int main(int argc, const char * argv[]) {
     Player *p2=new HumamPlayer("palyer2");
     Player *p_machine1=new QlearningMachine("playerS",gameSettings::epsilon,gameSettings::alpaha,gameSettings::discount);
     Player *p_machine2=new QlearningMachine("playerM",gameSettings::epsilon,gameSettings::alpaha,gameSettings::discount);
+    Player *p_minimax1=new MinimaxMachine("player_m1");
+    Player *p_minimax2=new MinimaxMachine("player_m2");
     ConsoleDisplay* display=new ConsoleDisplay('X','O');
     GameManager *m=GameManager::create(display,gameBoard, 3, p_machine1, p_machine2);
     m->runGameWithoutDisplay(20000);
-    m->setPlayer(p_machine1, p2);
+    //m->setPlayer(p_machine1, p2);
+    m->setPlayer(p_machine1, p_minimax2);
     m->runGame(2);
     delete gameBoard;
     delete p1;
     delete p2;
+    delete p_machine1;
+    delete p_machine2;
+    delete p_minimax1;
+    delete p_minimax2;
     return 0;
 }
