@@ -4,8 +4,6 @@
 Class for the chessboard of the game
 */
 
-#define CHESSBOARD_ROW 13
-#define CHESSBOARD_COLUMN 26
 #define GRID_NUMBER 9
 
 class ChessBoard {
@@ -23,9 +21,6 @@ public:
     // Unplace a chess piece at the chessboard
     // pos is from 0 to 8
     void unPlace(const int pos);
-
-    // Print the board to console
-    void print();
 
     // Judge whether the chessboard is full
     bool isFull() const;
@@ -56,21 +51,7 @@ private:
 
     // The board one-dimension used for calculation
     char boardInOneDimens[GRID_NUMBER];
+    
+    int length;
 
-    // The board two-dimension array to be printed to console
-    char board[CHESSBOARD_ROW][CHESSBOARD_COLUMN] = {
-        "- - - - - - - - - - - - -",
-        "|       |       |       |",
-        "|       |       |       |",
-        "|       |       |       |",
-        "- - - - - - - - - - - - -",
-        "|       |       |       |",
-        "|       |       |       |",
-        "|       |       |       |",
-        "- - - - - - - - - - - - -",
-        "|       |       |       |",
-        "|       |       |       |",
-        "|       |       |       |",
-        "- - - - - - - - - - - - -"
-    };
 };

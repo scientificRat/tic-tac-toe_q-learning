@@ -18,7 +18,9 @@ private:
     std::string machineName;
     double epsilon;
     double alpha;
+    double static_alpha;
     double discount;
+    int step;
     
     std::unordered_map<std::string, double> afterStateMap;
     
@@ -43,8 +45,10 @@ public:
     QlearningMachine(std::string name,double _epsilon,double _alpha,double _discount)
     :machineName(name),
     epsilon(_epsilon),
-    alpha(_alpha),
-    discount(_discount){}
+    static_alpha(_alpha),
+    discount(_discount){
+        step = 0;
+    }
     
     int takeTurn(GameBoard* g) override;
     

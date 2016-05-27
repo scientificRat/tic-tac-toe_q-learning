@@ -28,6 +28,7 @@ private:
     //single Instance
     static GameManager* gamemanager;
     
+    
     //private constructor
     GameManager(Display * d,GameBoard* g,int _winStateNumOfChess,Player* _player1,Player* _palyer2)
     :
@@ -96,7 +97,6 @@ public:
     void runGame(int times);
     //call when you just want to train machine
     void runGameWithoutDisplay(int times);
-    
     
 };
 

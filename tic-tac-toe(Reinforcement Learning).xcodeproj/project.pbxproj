@@ -33,6 +33,7 @@
 		4CB28AFA1CF605EA001F01A7 /* MinimaxMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinimaxMachine.h; sourceTree = "<group>"; };
 		4CB28AFC1CF61253001F01A7 /* Chessboard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Chessboard.cpp; sourceTree = "<group>"; };
 		4CB28AFE1CF6126D001F01A7 /* Chessboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Chessboard.h; sourceTree = "<group>"; };
+		4CB28B001CF72284001F01A7 /* DataCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataCollection.h; sourceTree = "<group>"; };
 		5716BFA01CF1903200EE10A1 /* Display.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Display.h; sourceTree = "<group>"; };
 		5716BFA41CF1FED700EE10A1 /* ConsoleDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConsoleDisplay.cpp; sourceTree = "<group>"; };
 		5716BFA61CF1FEDF00EE10A1 /* ConsoleDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConsoleDisplay.h; sourceTree = "<group>"; };
@@ -68,6 +69,14 @@
 				4CB28AFE1CF6126D001F01A7 /* Chessboard.h */,
 			);
 			name = MinimaxMachine;
+			sourceTree = "<group>";
+		};
+		4CB28AFF1CF72205001F01A7 /* DataCollection */ = {
+			isa = PBXGroup;
+			children = (
+				4CB28B001CF72284001F01A7 /* DataCollection.h */,
+			);
+			name = DataCollection;
 			sourceTree = "<group>";
 		};
 		5716BFA31CF1FE9F00EE10A1 /* DisplaySystem */ = {
@@ -106,6 +115,7 @@
 		57D260211CEAF4B000EB15DD /* tic-tac-toe(Reinforcement Learning) */ = {
 			isa = PBXGroup;
 			children = (
+				4CB28AFF1CF72205001F01A7 /* DataCollection */,
 				5716BFA81CF2135900EE10A1 /* Instructor */,
 				5716BFA31CF1FE9F00EE10A1 /* DisplaySystem */,
 				57D260221CEAF4B000EB15DD /* main.cpp */,

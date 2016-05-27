@@ -33,7 +33,7 @@ int MinimaxMachine::takeTurn(GameBoard *g) {
     int count=0;
     findCompMove(*cb, bestMove,value,count,CompLoss,CompWin);
     //printf("哈哈：%d\n",count);
-    //delete &cb;
+    delete cb;
     return bestMove;
 }
 

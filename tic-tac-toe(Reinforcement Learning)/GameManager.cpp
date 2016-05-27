@@ -7,7 +7,8 @@
 //
 
 #include "GameManager.h"
-//#include <iostream>
+#include "DataCollection.h"
+#include <iostream>
 //single instance
 GameManager* GameManager::gamemanager=nullptr;
 
@@ -172,6 +173,7 @@ void GameManager::doGameOver(){
     player2->recieveFeedBack(f);
     delete f;
     if(displayOn) display->printGameOver(gameboard, gameState);
+    //else display->printGameResult(gameState);
 }
 
 void GameManager::runOneTurn(){
@@ -252,12 +254,16 @@ void GameManager::runGame(int times){
 }
 
 void GameManager::runGameWithoutDisplay(int times){
+    DataCollection *dc = new DataCollection();
     displayOn=false;
     while (times--) {
         while(!this->isGameOver()){
             runOneTurn();
         }
+        dc->addNewRseult(gameState);
         restartGame();
     }
+    delete dc;
 }
+
 

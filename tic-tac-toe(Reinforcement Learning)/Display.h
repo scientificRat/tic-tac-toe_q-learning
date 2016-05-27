@@ -25,6 +25,7 @@ public:
     virtual void printBoard(GameBoard*g)    =0;
     
     virtual void printGameOver(GameBoard* g,int gameState)  =0;
+    virtual void printGameResult(int gameState) =0;
     
     virtual void showSystemMessage(std::string msg) =0;
     

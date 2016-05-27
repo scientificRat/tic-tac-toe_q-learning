@@ -80,3 +80,15 @@ void ConsoleDisplay::printGameOver(GameBoard* g,int gameState){
     std::cout<<"--------------------------\n\n";
     
 }
+
+void ConsoleDisplay::printGameResult(int gameState) {
+    if(gameState==cst::WITHDRAW){
+        std::cout<<"Withdraw\n";
+    }
+    else if(gameState==cst::PLAYER1_WIN){
+        std::cout<<"Player1("<<player1_ch<<") win"<<std::endl;
+    }
+    else if(gameState==cst::PLAYER2_WIN){
+        std::cout<<"Palyer2("<<player2_ch<<") win"<<std::endl;
+    }
+}

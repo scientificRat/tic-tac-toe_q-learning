@@ -30,6 +30,8 @@ public:
     void showSystemMessage(std::string msg) override{
         cout<<msg;
     }
+        
+    void printGameResult(int gameState) override;
     
 };
 

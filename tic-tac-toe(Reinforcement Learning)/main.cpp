@@ -16,8 +16,8 @@
 
 namespace gameSettings {
     double epsilon=0;
-    double alpaha=0.5;
-    double discount=0.8;
+    double alpaha=1;
+    double discount=0.01;
 }
 using namespace std;
 int main(int argc, const char * argv[]) {
@@ -30,10 +30,11 @@ int main(int argc, const char * argv[]) {
     Player *p_minimax2=new MinimaxMachine("player_m2");
     ConsoleDisplay* display=new ConsoleDisplay('X','O');
     GameManager *m=GameManager::create(display,gameBoard, 3, p_machine1, p_machine2);
-    m->runGameWithoutDisplay(20000);
+    //m->runGameWithoutDisplay(20000);
     //m->setPlayer(p_machine1, p2);
     m->setPlayer(p_machine1, p_minimax2);
-    m->runGame(2);
+    //m->runGame(20);
+    m->runGameWithoutDisplay(10000);
     delete gameBoard;
     delete p1;
     delete p2;

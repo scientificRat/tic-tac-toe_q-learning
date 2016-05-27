@@ -7,6 +7,7 @@
 //
 
 #include "QlearningMachine.h"
+#include <iostream>
 #include <fstream>
 #include <random>
 using namespace std;
@@ -95,6 +96,14 @@ void QlearningMachine::upDateValue(FeedBack* f){
 /////public:
 //@override   callBack Function
 int QlearningMachine::takeTurn(GameBoard *g){
+    step++;
+    //alpha = pow((double)1/step, (double)1/100);
+    alpha = 1.0;
+    epsilon = 0;
+    if (step>370) {
+//        alpha = 0.01;
+        epsilon = 0;
+    }
     std::string gameBaordIdentifier=g->getUniqueString();
     int action=makeActionDecision(gameBaordIdentifier);
     presentAfterState=gameBaordIdentifier;
