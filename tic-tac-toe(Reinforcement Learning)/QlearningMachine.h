@@ -20,6 +20,7 @@ private:
     double alpha;
     double discount;
     int step;
+    double valueTable[9];
     
     std::unordered_map<std::string, double> afterStateMap;
     
@@ -46,7 +47,7 @@ public:
     epsilon(_epsilon),
     alpha(_alpha),
     discount(_discount){
-        step = 0;
+        step = 1;
     }
     
     int takeTurn(GameBoard* g) override;
@@ -66,6 +67,9 @@ public:
     }
     void setAlpha(double _alpha){
         this->alpha=_alpha;
+    }
+    double getAlpha() {
+        return this->alpha;
     }
     void setDiscount(double _discount){
         this->discount=_discount;

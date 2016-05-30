@@ -57,10 +57,10 @@ int QlearningMachine::getPolicy(std::string& gameBoardIdentifier){
 int QlearningMachine::makeActionDecision(std::string& gameBoardIdentifier){
     int action=-1;
     static std::default_random_engine randEngine(static_cast<int>(time(0)));
-    static std::bernoulli_distribution T(1-epsilon);
-    static std::uniform_int_distribution<int> I(0,65532);
+    static std::uniform_real_distribution<double> R(0,1);
+    static std::uniform_int_distribution<int> I(0,40319);
     //about (1-epsilon) T wiil return true
-    if(T(randEngine)){
+    if(R(randEngine)>epsilon){
         action=getPolicy(gameBoardIdentifier);
     }
     else{
@@ -84,9 +84,37 @@ void QlearningMachine::upDateValue(FeedBack* f){
         sample=f->reward+discount*getMaxQvalue(f->gameBoardIdentifier);
     }
     qValue=(1-alpha)*qValue+alpha*sample;
-    if (presentAfterState.compare("010000000")==0) {
-        cout<<qValue<<endl;
+    /*
+    if (machineName.compare("playerS")==0){
+        if (presentAfterState.compare("100000000")==0) {
+            valueTable[0]=qValue;
+        }
+        if (presentAfterState.compare("010000000")==0) {
+            valueTable[1]=qValue;
+        }
+        if (presentAfterState.compare("001000000")==0) {
+            valueTable[2]=qValue;
+        }
+        if (presentAfterState.compare("000100000")==0) {
+            valueTable[3]=qValue;
+        }
+        if (presentAfterState.compare("000010000")==0) {
+            valueTable[4]=qValue;
+        }
+        if (presentAfterState.compare("000001000")==0) {
+            valueTable[5]=qValue;
+        }
+        if (presentAfterState.compare("000000100")==0) {
+            valueTable[6]=qValue;
+        }
+        if (presentAfterState.compare("000000010")==0) {
+            valueTable[7]=qValue;
+        }
+        if (presentAfterState.compare("000000001")==0) {
+            valueTable[8]=qValue;
+        }
     }
+    */
     
 }
 
@@ -98,15 +126,6 @@ void QlearningMachine::upDateValue(FeedBack* f){
 /////public:
 //@override   callBack Function
 int QlearningMachine::takeTurn(GameBoard *g){
-    step++;
-    //if (step==1) return 4;
-    alpha = pow((double)1/step, (double)0.5);
-    //alpha = 0.5;
-    //cout<<afterStateMap<<endl;
-    if (step>20000) {
-//        alpha = 0;
-//        epsilon = 0;
-    }
     std::string gameBaordIdentifier=g->getUniqueString();
     int action=makeActionDecision(gameBaordIdentifier);
     presentAfterState=gameBaordIdentifier;
@@ -119,6 +138,19 @@ void QlearningMachine::recieveFeedBack(FeedBack *f){
     //if gameover
     if(cst::GAME_NORMAL_RUN!=f->gameState){
         doOneGameOver();
+        /*
+        step++;
+        if (machineName.compare("playerS")==0){
+            int max = 0;
+            for (int i=0; i<9; i++) {
+                if (valueTable[i] > valueTable[max])
+                    max = i;
+            }
+            cout<<step<<' '<<alpha<<' '<<epsilon<<' '<<max<<endl;
+            cout<<valueTable[0]<<' '<<valueTable[1]<<' '<<valueTable[2]<<endl;
+            cout<<valueTable[3]<<' '<<valueTable[4]<<' '<<valueTable[5]<<endl;
+            cout<<valueTable[6]<<' '<<valueTable[7]<<' '<<valueTable[8]<<"\n\n"<<endl;
+        }*/
     }
 }
 

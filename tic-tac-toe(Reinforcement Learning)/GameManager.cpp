@@ -155,17 +155,20 @@ int GameManager::checkHelp(int &state, int &countPlayer1, int &countPlayer2,int 
 void GameManager::doGameOver(){
     double reward1;
     double reward2;
+    double win_reward = 10;
+    double wtd_reward = -5;
+    double los_reward = -10;
     if(cst::PLAYER1_WIN == gameState){
-        reward1=20;
-        reward2=0;
+        reward1=win_reward;
+        reward2=los_reward;
     }
     else if(cst::PLAYER2_WIN ==gameState ){
-        reward1=0;
-        reward2=20;
+        reward1=los_reward;
+        reward2=win_reward;
     }
     else{//if withdraw
-        reward1=10;
-        reward2=10;
+        reward1=wtd_reward;
+        reward2=wtd_reward;
     }
     FeedBack* f=new FeedBack(gameState,reward1,gameboard->getUniqueString());
     player1->recieveFeedBack(f);
@@ -254,8 +257,17 @@ void GameManager::runGame(int times){
 }
 
 void GameManager::runGameWithoutDisplay(int times){
-    DataCollection *dc = new DataCollection();
     displayOn=false;
+    while (times--) {
+        while(!this->isGameOver()){
+            runOneTurn();
+        }
+        restartGame();
+    }
+}
+
+void GameManager::runGameWithResultOnly(int times) {
+    DataCollection *dc = new DataCollection();
     while (times--) {
         while(!this->isGameOver()){
             runOneTurn();
@@ -265,5 +277,4 @@ void GameManager::runGameWithoutDisplay(int times){
     }
     delete dc;
 }
-
 
