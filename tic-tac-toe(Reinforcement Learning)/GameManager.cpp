@@ -7,8 +7,9 @@
 //
 
 #include "GameManager.h"
-#include "DataCollection.h"
 #include <iostream>
+using namespace std;
+
 //single instance
 GameManager* GameManager::gamemanager=nullptr;
 
@@ -266,15 +267,17 @@ void GameManager::runGameWithoutDisplay(int times){
     }
 }
 
-void GameManager::runGameWithResultOnly(int times) {
-    DataCollection *dc = new DataCollection();
+int GameManager::runGameWithResultOnly(int times) {
+    int total = 0;
     while (times--) {
         while(!this->isGameOver()){
             runOneTurn();
         }
-        dc->addNewRseult(gameState);
+        if (gameState==cst::WITHDRAW)
+            total++;
         restartGame();
     }
-    delete dc;
+//    cout<<total<<endl;
+    return total;
 }
 

@@ -33,26 +33,37 @@ int main(int argc, const char * argv[]) {
     ConsoleDisplay* display=new ConsoleDisplay('X','O');
     GameManager *m=GameManager::create(display,gameBoard, 3, p_machine1, p_random);
     
-    double temp_alpha = 1;
-    for (int i=1; i<=100; i++) {
-        temp_alpha *= 0.8;
-        cout<<"\n"<<i<<" round, alpha="<<temp_alpha<<""<<endl;
+    double alpha = 1;
+    double epsilon = 0.8;
+    int total1, total2;
+    for (int i=1; i<=500; i++) {
+        alpha *= 0.97;
+        cout << "round " << i << " \t";
+        total1 = 0;
+        total2 = 0;
+        for (int j=0; j<100; j++) {
+            p_machine1->setAlpha(alpha);
+            p_machine1->setEpsilon(epsilon);
+            m->setPlayer(p_machine1, p_random);
+            m->runGameWithoutDisplay(1);
+            m->setPlayer(p_random, p_machine1);
+            m->runGameWithoutDisplay(1);
+            
+            p_machine1->setAlpha(0);
+            p_machine1->setEpsilon(0);
+            m->setPlayer(p_machine1, p_minimax);
+            total1 += m->runGameWithResultOnly(1);
+            m->setPlayer(p_minimax, p_machine1);
+            total2 += m->runGameWithResultOnly(1);
+        }
+        cout << total1 << "  " << total2 << endl;
         
-        p_machine1->setAlpha(temp_alpha);
-        p_machine2->setAlpha(temp_alpha);
-        p_machine1->setEpsilon(1);
-        p_machine2->setEpsilon(1);
-        m->setPlayer(p_machine1, p_machine2);
-        m->runGameWithoutDisplay(100);
-        
-        p_machine1->setEpsilon(0);
-        m->setPlayer(p_machine1, p_minimax);
-        m->runGameWithResultOnly(100);
-        
-        p_machine2->setEpsilon(0);
-        m->setPlayer(p_minimax, p_machine2);
-        m->runGameWithResultOnly(100);
     }
+    
+//    m->setPlayer(p_machine1, p2);
+//    m->runGame(3);
+//    m->setPlayer(p1, p_machine1);
+//    m->runGame(3);
     
     delete gameBoard;
     delete p1;

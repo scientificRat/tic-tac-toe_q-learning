@@ -97,7 +97,7 @@ public:
     void runGame(int times);
     //call when you just want to train machine
     void runGameWithoutDisplay(int times);
-    void runGameWithResultOnly(int times);
+    int runGameWithResultOnly(int times);
     
 };
 
