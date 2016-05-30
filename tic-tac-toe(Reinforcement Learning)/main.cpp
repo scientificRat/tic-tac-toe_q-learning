@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
     double temp_alpha = 1;
     for (int i=1; i<=100; i++) {
         temp_alpha *= 0.8;
-        cout<<i<<' '<<temp_alpha<<endl;
+        cout<<"\n"<<i<<" round, alpha="<<temp_alpha<<""<<endl;
         
         p_machine1->setAlpha(temp_alpha);
         p_machine2->setAlpha(temp_alpha);

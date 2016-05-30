@@ -37,9 +37,9 @@ private:
             }
         }
 //        std::cout << curr << "\t\t=";
-        for (int i=0; i<withdraw; i++) {
-            //std::cout<<' ';
-        }
+//        for (int i=0; i<withdraw; i++) {
+//            std::cout<<' ';
+//        }
         std::cout<<p1w<<' '<<withdraw<<' '<<p2w<<std::endl;
     }
     
