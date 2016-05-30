@@ -75,7 +75,7 @@ int GameManager::check(){
         countPlayer1=0;
         countPlayer2=0;
         for(int j=0;j<width;j++){
-            int i=m+j;
+            int i=m-j;
             if(i<0 || i> height){
                 continue;
             }
@@ -156,16 +156,16 @@ void GameManager::doGameOver(){
     double reward1;
     double reward2;
     if(cst::PLAYER1_WIN == gameState){
-        reward1=10;
-        reward2=-10;
+        reward1=20;
+        reward2=0;
     }
     else if(cst::PLAYER2_WIN ==gameState ){
-        reward1=-10;
-        reward2=10;
+        reward1=0;
+        reward2=20;
     }
     else{//if withdraw
-        reward1=-10;
-        reward2=-10;
+        reward1=10;
+        reward2=10;
     }
     FeedBack* f=new FeedBack(gameState,reward1,gameboard->getUniqueString());
     player1->recieveFeedBack(f);

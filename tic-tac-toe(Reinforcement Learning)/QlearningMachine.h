@@ -18,7 +18,6 @@ private:
     std::string machineName;
     double epsilon;
     double alpha;
-    double static_alpha;
     double discount;
     int step;
     
@@ -45,7 +44,7 @@ public:
     QlearningMachine(std::string name,double _epsilon,double _alpha,double _discount)
     :machineName(name),
     epsilon(_epsilon),
-    static_alpha(_alpha),
+    alpha(_alpha),
     discount(_discount){
         step = 0;
     }

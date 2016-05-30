@@ -84,7 +84,9 @@ void QlearningMachine::upDateValue(FeedBack* f){
         sample=f->reward+discount*getMaxQvalue(f->gameBoardIdentifier);
     }
     qValue=(1-alpha)*qValue+alpha*sample;
-    
+    if (presentAfterState.compare("010000000")==0) {
+        cout<<qValue<<endl;
+    }
     
 }
 
@@ -97,12 +99,13 @@ void QlearningMachine::upDateValue(FeedBack* f){
 //@override   callBack Function
 int QlearningMachine::takeTurn(GameBoard *g){
     step++;
-    //alpha = pow((double)1/step, (double)1/100);
-    alpha = 1.0;
-    epsilon = 0;
-    if (step>370) {
-//        alpha = 0.01;
-        epsilon = 0;
+    //if (step==1) return 4;
+    alpha = pow((double)1/step, (double)0.5);
+    //alpha = 0.5;
+    //cout<<afterStateMap<<endl;
+    if (step>20000) {
+//        alpha = 0;
+//        epsilon = 0;
     }
     std::string gameBaordIdentifier=g->getUniqueString();
     int action=makeActionDecision(gameBaordIdentifier);

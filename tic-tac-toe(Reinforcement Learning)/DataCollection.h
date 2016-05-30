@@ -12,7 +12,7 @@
 #include "BaseDataStruct.h"
 #include <iostream>
 
-#define TOTAL 10
+#define TOTAL 100
 
 class DataCollection {
 private:
@@ -37,11 +37,12 @@ private:
             }
         }
         //std::cout << p1w << " " << withdraw << " " << p2w << std::endl;
-        std::cout << curr << "\t\t";
+        
+        std::cout << curr << "\t\t=";
         for (int i=0; i<withdraw; i++) {
-            std::cout<<' ';
+            //std::cout<<' ';
         }
-        std::cout<<'|'<<std::endl;
+        std::cout<<p1w<<' '<<withdraw<<' '<<p2w<<std::endl;
     }
     
 public:
@@ -53,7 +54,7 @@ public:
     
     void addNewRseult(int gameState) {
         arr[curr%TOTAL] = gameState;
-        if ((++curr)>=TOTAL) getAvg();
+        if ((++curr)%TOTAL==0) getAvg();
     }
 };
 
