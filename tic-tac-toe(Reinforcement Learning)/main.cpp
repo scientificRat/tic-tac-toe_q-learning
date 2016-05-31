@@ -34,10 +34,13 @@ int main(int argc, const char * argv[]) {
     GameManager *m=GameManager::create(display,gameBoard, 3, p_machine1, p_random);
     
     double alpha = 1;
-    double epsilon = 0.8;
+    double epsilon = 0.3;
+    double discount = 0.8;
     int total1, total2;
+    
+    p_machine1->setDiscount(discount);
     for (int i=1; i<=500; i++) {
-        alpha *= 0.97;
+        alpha *= 0.98;
         cout << "round " << i << " \t";
         total1 = 0;
         total2 = 0;
