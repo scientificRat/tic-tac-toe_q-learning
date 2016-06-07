@@ -5,10 +5,11 @@ Class for the chessboard of the game
 */
 
 #define GRID_NUMBER 9
+#define MAX_GRID_NUMBER 25
 
 class ChessBoard {
 public:
-    ChessBoard();
+    ChessBoard(int _length);
 
     // Place a human chess piece at the chessboard
     // pos is from 0 to 8
@@ -50,7 +51,7 @@ private:
     bool hasWon(const char c) const;
 
     // The board one-dimension used for calculation
-    char boardInOneDimens[GRID_NUMBER];
+    char boardInOneDimens[MAX_GRID_NUMBER];
     
     int length;
 

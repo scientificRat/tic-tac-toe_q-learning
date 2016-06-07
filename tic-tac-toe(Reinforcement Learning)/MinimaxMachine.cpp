@@ -10,7 +10,7 @@
 #include "Chessboard.h"
 
 int MinimaxMachine::takeTurn(GameBoard *g) {
-    ChessBoard *cb = new ChessBoard();
+    ChessBoard *cb = new ChessBoard(g->getLength());
     int p1=0, p2=0;
     for (int i=0; i<g->getLength(); i++) {
         if (g->getState(i)==cst::PLAYER1_CHESS) p1++;

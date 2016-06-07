@@ -28,10 +28,10 @@ public:
     
     int takeTurn(GameBoard* g) override {
         static std::default_random_engine randEngine(static_cast<int>(time(0)));
-        static std::uniform_int_distribution<int> I(0,8);
+        static std::uniform_int_distribution<int> I(0,40319);
         int temp;
         while (1) {
-            temp = I(randEngine);
+            temp = I(randEngine) % g->getLength();
             if (g->getState(temp)==cst::NO_CHESS) {
                 return temp;
             }

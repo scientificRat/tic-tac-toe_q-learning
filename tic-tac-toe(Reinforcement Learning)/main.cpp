@@ -23,16 +23,18 @@ namespace gameSettings {
 }
 using namespace std;
 int main(int argc, const char * argv[]) {
-    GameBoard* gameBoard=new GameBoard(3,3);
-    Player *p1=new HumamPlayer("player1");
-    Player *p2=new HumamPlayer("palyer2");
+    //GameBoard* gameBoard=new GameBoard(3,3);
+    GameBoard* gameBoard=new GameBoard(5,5);
+    HumamPlayer *p1=new HumamPlayer("player1");
+    HumamPlayer *p2=new HumamPlayer("palyer2");
     QlearningMachine *p_machine1=new QlearningMachine("playerS",gameSettings::epsilon,gameSettings::alpaha,gameSettings::discount);
     QlearningMachine *p_machine2=new QlearningMachine("playerM", gameSettings::epsilon,gameSettings::alpaha,gameSettings::discount);
-    Player *p_minimax=new MinimaxMachine("player_minimax");
-    Player *p_random=new RandomMachine("player_random");
+    MinimaxMachine *p_minimax=new MinimaxMachine("player_minimax");
+    RandomMachine *p_random=new RandomMachine("player_random");
     ConsoleDisplay* display=new ConsoleDisplay('X','O');
-    GameManager *m=GameManager::create(display,gameBoard, 3, p_machine1, p_random);
-    
+    //GameManager *m=GameManager::create(display,gameBoard, 3, p_machine1, p_random);
+    GameManager *m=GameManager::create(display,gameBoard, 4, p_machine1, p_random);
+    /*
     double alpha = 1;
     double epsilon = 0.3;
     double discount = 0.8;
@@ -61,12 +63,16 @@ int main(int argc, const char * argv[]) {
         }
         cout << total1 << "  " << total2 << endl;
         
-    }
+    }*/
     
 //    m->setPlayer(p_machine1, p2);
 //    m->runGame(3);
 //    m->setPlayer(p1, p_machine1);
 //    m->runGame(3);
+    
+    m->setPlayer(p1, p_minimax);
+    m->setPlayer(p1, p2);
+    m->runGame(3);
     
     delete gameBoard;
     delete p1;
